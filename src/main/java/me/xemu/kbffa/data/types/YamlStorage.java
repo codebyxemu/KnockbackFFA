@@ -1,15 +1,15 @@
 package me.xemu.kbffa.data.types;
 
 import me.xemu.kbffa.Knockback;
-import me.xemu.kbffa.data.DataType;
+import me.xemu.kbffa.data.Storage;
 import me.xemu.kbffa.data.profile.Profile;
 
 import java.util.UUID;
 
-public class FileData implements DataType {
+public class YamlStorage implements Storage {
 	@Override
 	public String name() {
-		return "File";
+		return "Yaml";
 	}
 
 	@Override

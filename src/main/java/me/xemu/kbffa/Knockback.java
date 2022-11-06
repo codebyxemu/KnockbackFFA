@@ -1,8 +1,8 @@
 package me.xemu.kbffa;
 
 import lombok.Getter;
-import me.xemu.kbffa.data.DataType;
-import me.xemu.kbffa.data.types.FileData;
+import me.xemu.kbffa.data.Storage;
+import me.xemu.kbffa.data.types.YamlStorage;
 import me.xemu.kbffa.gui.GUIManager;
 import me.xemu.kbffa.utils.Config;
 import me.xemu.kbffa.utils.Message;
@@ -18,7 +18,7 @@ public class Knockback extends JavaPlugin {
 	@Getter private Config shop;
 	@Getter private Config data;
 
-	@Getter private DataType storage;
+	@Getter private Storage storage;
 
 	@Override
 	public void onEnable() {
@@ -31,7 +31,7 @@ public class Knockback extends JavaPlugin {
 		shop = new Config("shop.yml");
 		data = new Config("data.yml");
 
-		storage = new FileData();
+		storage = new YamlStorage();
 
 		new Message("§3Registering Commands & Events").console();
 

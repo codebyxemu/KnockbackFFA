@@ -4,7 +4,7 @@ import me.xemu.kbffa.data.profile.Profile;
 
 import java.util.UUID;
 
-public interface DataType {
+public interface Storage {
 
 	String name();
 
