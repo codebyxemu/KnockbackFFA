@@ -12,6 +12,8 @@ import org.bukkit.inventory.ItemStack;
 import java.util.List;
 
 public class ShopGUI extends GUI<Knockback> {
+	protected Knockback plugin = Knockback.getInstance();
+
 	public ShopGUI(Knockback plugin) {
 		super(plugin);
 	}
@@ -42,16 +44,16 @@ public class ShopGUI extends GUI<Knockback> {
 			}
 		});
 
-		for (String key : Knockback.getInstance().getShop().getConfigurationSection("items").getKeys(true)) {
-			Material material = Material.valueOf(Knockback.getInstance().getShop().getConfig().getString("items." + key + ".material"));
-			String displayName = Knockback.getInstance().getShop().getConfig().getString("items." + key + ".displayName");
-			int cost = Knockback.getInstance().getShop().getInt("items." + key + ".cost");
+		for (String key : plugin.getShop().getConfigurationSection("items").getKeys(true)) {
+			Material material = Material.valueOf(plugin.getShop().getConfig().getString("items." + key + ".material"));
+			String displayName = plugin.getShop().getConfig().getString("items." + key + ".displayName");
+			int cost = plugin.getShop().getInt("items." + key + ".cost");
 
 			ItemBuilder item = new ItemBuilder(material)
 					.setName(displayName)
 					.setLore("&7Item Cost: &6" + cost);
 
-			Profile profile = Knockback.getInstance().getStorage().getProfile(player.getUniqueId());
+			Profile profile = plugin.getStorage().getProfile(player.getUniqueId());
 			boolean purchased = profile.getUnlocked().contains(key);
 
 			if (purchased) {
@@ -67,7 +69,7 @@ public class ShopGUI extends GUI<Knockback> {
 				if (!purchased && profile.getCoins() >= profile.getCoins()) {
 					profile.getUnlocked().add(key);
 					profile.setCoins(profile.getCoins() - cost);
-					Knockback.getInstance().getStorage().storeProfile(profile);
+					plugin.getStorage().storeProfile(profile);
 					return ButtonAction.CLOSE_GUI;
 				} else if (!purchased && profile.getCoins() <= profile.getCoins()) {
 					whoClicked.sendMessage("§cNot enough money.");
