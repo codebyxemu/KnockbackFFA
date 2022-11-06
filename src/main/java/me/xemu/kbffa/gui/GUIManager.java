@@ -20,7 +20,7 @@ public class GUIManager<T extends JavaPlugin> implements Listener {
     this.plugin = plugin;
 
     if (!plugin.isEnabled()) {
-      throw new IllegalStateException("Your plugin must be initialized before instantiating an instance of GUIAPI.");
+      throw new IllegalStateException("Your plugin must be initialized before instantiating an instance of GUI.");
     }
 
     plugin.getServer()

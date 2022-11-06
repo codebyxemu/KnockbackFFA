@@ -2,11 +2,16 @@ package me.xemu.kbffa;
 
 import lombok.Getter;
 import me.xemu.kbffa.data.Storage;
+import me.xemu.kbffa.data.map.Map;
 import me.xemu.kbffa.data.types.YamlStorage;
 import me.xemu.kbffa.gui.GUIManager;
 import me.xemu.kbffa.utils.Config;
 import me.xemu.kbffa.utils.Message;
+import org.bukkit.Location;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 public class Knockback extends JavaPlugin {
@@ -19,6 +24,10 @@ public class Knockback extends JavaPlugin {
 	@Getter private Config data;
 
 	@Getter private Storage storage;
+
+	// Maps
+	@Getter private Map activeMap;
+	@Getter private List<Map> maps;
 
 	@Override
 	public void onEnable() {
@@ -37,6 +46,10 @@ public class Knockback extends JavaPlugin {
 
 		registerCommands();
 		registerEvents();
+
+		maps = new ArrayList<>();
+
+		activeMap = maps.stream().findAny().get();
 
 		new Message("§aKnockbackFFA successfully started! For support, please use SpigotMC: @Xemu").console();
 	}
